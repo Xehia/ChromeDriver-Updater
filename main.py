@@ -1,6 +1,8 @@
 import requests
 import difflib
+import zipfile
 import wget
+import os
 from get_chrome_version import get_chrome_version
 from bs4 import BeautifulSoup
 
@@ -33,20 +35,17 @@ def checkChromeVersion():
 
 
 def downloadVersion(downloadVersion = checkChromeVersion()):
+    fileLink = f'https://chromedriver.storage.googleapis.com/{downloadVersion}/chromedriver_win32.zip'
+    wget.download(fileLink)
 
-    for version in versions:
-        if version[0] == downloadVersion:
-            downloadLink = version[1]
-
-    req = requests.get(downloadLink)
-    soup = BeautifulSoup(req.content, 'html.parser')
-
-    for a in soup.find_all('a', href=True):
-        if a['href'].endswith('win32.zip'):
-                wget.download(downloadLink)
-                print(downloadLink)
-                print("Downloaded version: "+ downloadVersion)
+def extractZip():
+    with zipfile.ZipFile('chromedriver_win32.zip', 'r') as zip_ref:
+        zip_ref.extractall('')
 
 downloadVersion()
+extractZip()
+
+app_path = os.path.join(os.getcwd())
+os.environ["path"] += app_path
 
 
