@@ -38,7 +38,11 @@ def checkChromeVersion():
         if version[0] not in versionList:
             versionList.append(version[0])
 
-    return difflib.get_close_matches(chromeVersion, versionList)[0]
+    try:
+        return difflib.get_close_matches(chromeVersion, versionList)[0]
+    except Exception as e:
+        print("Google Chrome path not found!")
+        exit()
 
 
 def downloadVersion(downloadVersion = checkChromeVersion()):
