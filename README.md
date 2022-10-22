@@ -5,7 +5,7 @@
 
 ## Setup
 
-- Set a path of your choice in `config.py`  
+- Set a path of your choice in `config.json`  
 For example: `C:\ProgramData\ChromeDriver`
 
 - Update your **PATH environment variable** with the path you chose in the **previous** step.
