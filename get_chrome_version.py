@@ -1,10 +1,3 @@
-#
-# Programmatically detect the version of the Chrome web browser installed on the PC.
-# Compatible with Windows, Mac, Linux.
-# Written in Python.
-# Uses native OS detection. Does not require Selenium nor the Chrome web driver.
-#
-
 import os
 import re
 from sys import platform
